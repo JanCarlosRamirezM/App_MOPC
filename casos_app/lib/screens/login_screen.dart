@@ -17,18 +17,20 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _loginTitle() {
-    return Column(
-      children: [
-        const Padding(padding: EdgeInsets.only(top: 5)),
-        Image.asset('assets/cupulaBlue.png', width: 80),
-        const Padding(padding: EdgeInsets.only(top: 5)),
-        Image.asset('assets/logomopc.png', width: 100),
-        const Padding(padding: EdgeInsets.only(top: 5)),
-        const Text(
-          'Iniciar sesión',
-          style: AppTheme.loginTitle,
-        ),
-      ],
+    return Container(
+      padding: const EdgeInsets.only(top: 5),
+      child: Column(
+        children: [
+          Image.asset('assets/cupulaBlue.png', width: 80),
+          const Padding(padding: EdgeInsets.only(top: 5)),
+          Image.asset('assets/logomopc.png', width: 100),
+          const Padding(padding: EdgeInsets.only(top: 5)),
+          const Text(
+            'Iniciar sesión',
+            style: AppTheme.loginTitle,
+          ),
+        ],
+      ),
     );
   }
 }
