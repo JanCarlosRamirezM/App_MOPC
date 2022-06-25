@@ -1,3 +1,4 @@
+import 'package:casos_app/functions/funtions.dart';
 import 'package:casos_app/theme/app_theme.dart';
 import 'package:casos_app/ui/input_decorations.dart';
 import 'package:casos_app/widgets/widgets.dart';
@@ -38,37 +39,37 @@ class _LoginForm extends StatelessWidget {
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(children: [
-          _buildEmail(),
-          _buildPassword(),
-          _buildForgotPassword(),
-          _buildButtonEnter(),
-          _buildHorizontalOrLine(),
-          _buildTextCreateAccount(),
-        ])));
+              _buildEmail(),
+              _buildPassword(),
+              _buildForgotPassword(),
+              _buildButtonEnter(context),
+              _buildHorizontalOrLine(),
+              _buildTextCreateAccount(),
+            ])));
   }
 
   Widget _buildEmail() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15.0),
-      child: TextField(
-        decoration: InputDecorations.authInputDecoration(
-            hintText: 'Correo@correo.com ',
-            labelText: 'Correo electrónico',
-            prefixIcon: Icons.alternate_email_rounded),
-      ),
-    );
+        margin: const EdgeInsets.only(bottom: 15.0),
+        child: TextFormField(
+            decoration: InputDecorations.authInputDecoration(
+                hintText: 'Correo@correo.com ',
+                labelText: 'Correo electrónico',
+                prefixIcon: Icons.alternate_email_rounded),
+            validator: LoginFuntions.validatorEmail));
   }
 
   Widget _buildPassword() {
     return Container(
       margin: const EdgeInsets.only(bottom: 15.0),
-      child: TextField(
-        decoration: InputDecorations.authInputDecoration(
-            hintText: '*****',
-            labelText: 'Contraseña',
-            prefixIcon: Icons.lock_outline),
-      ),
+      child: TextFormField(
+          decoration: InputDecorations.authInputDecoration(
+              hintText: '*****',
+              labelText: 'Contraseña',
+              prefixIcon: Icons.lock_outline),
+          validator: LoginFuntions.validatorPassword),
     );
   }
 
@@ -83,7 +84,7 @@ class _LoginForm extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonEnter() {
+  Widget _buildButtonEnter(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 35.0),
       child: MaterialButton(
@@ -98,7 +99,9 @@ class _LoginForm extends StatelessWidget {
             'Ingresar',
             style: AppTheme.buttonTextLogin,
           ),
-          onPressed: () {}),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, 'home');
+          }),
     );
   }
 
