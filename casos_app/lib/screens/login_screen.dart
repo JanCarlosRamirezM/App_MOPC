@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
             title: title,
           ),
           const SizedBox(
-            height: 10,
+            height: 50,
           ),
           const _LoginForm(),
         ]),
@@ -39,37 +39,42 @@ class _LoginForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Form(
             child: Column(children: [
-          _textFieldCorreo(),
-          _sizedBox(),
-          _textFieldPassword(),
-          _sizedBox(),
-          _textOlvidoPassword(),
-          _sizedBox(),
-          _buttonIngresar(),
-          _sizedBox(),
-          const HorizontalOrLine(),
-          _textCrearCuenta(),
-          _sizedBox(),
+          _buildEmail(),
+          _buildPassword(),
+          _buildForgotPassword(),
+          _buildButtonEnter(),
+          _buildHorizontalOrLine(),
+          _buildTextCreateAccount(),
         ])));
   }
 
-  MaterialButton _buttonIngresar() {
-    return MaterialButton(
-        minWidth: double.infinity,
-        height: 50,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        disabledColor: Colors.grey,
-        elevation: 0,
-        color: AppTheme.primary,
-        child: const Text(
-          'Ingresar',
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: () {});
+  Widget _buildEmail() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15.0),
+      child: TextField(
+        decoration: InputDecorations.authInputDecoration(
+            hintText: 'Correo@correo.com ',
+            labelText: 'Correo electrónico',
+            prefixIcon: Icons.alternate_email_rounded),
+      ),
+    );
   }
 
-  Widget _textOlvidoPassword() {
+  Widget _buildPassword() {
     return Container(
+      margin: const EdgeInsets.only(bottom: 15.0),
+      child: TextField(
+        decoration: InputDecorations.authInputDecoration(
+            hintText: '*****',
+            labelText: 'Contraseña',
+            prefixIcon: Icons.lock_outline),
+      ),
+    );
+  }
+
+  Widget _buildForgotPassword() {
+    return Container(
+      margin: const EdgeInsets.only(top: 10.0),
       alignment: Alignment.centerRight,
       child: const Text(
         '¿Olvidó su contraseña?',
@@ -78,34 +83,38 @@ class _LoginForm extends StatelessWidget {
     );
   }
 
-  TextField _textFieldPassword() {
-    return TextField(
-      decoration: InputDecorations.authInputDecoration(
-          hintText: '*****',
-          labelText: 'Contraseña',
-          prefixIcon: Icons.lock_outline),
+  Widget _buildButtonEnter() {
+    return Container(
+      margin: const EdgeInsets.only(top: 35.0),
+      child: MaterialButton(
+          minWidth: double.infinity,
+          height: 50,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          disabledColor: Colors.grey,
+          elevation: 0,
+          color: AppTheme.primary,
+          child: const Text(
+            'Ingresar',
+            style: AppTheme.buttonTextLogin,
+          ),
+          onPressed: () {}),
     );
   }
 
-  TextField _textFieldCorreo() {
-    return TextField(
-      decoration: InputDecorations.authInputDecoration(
-          hintText: 'Correo@correo.com ',
-          labelText: 'Correo electrónico',
-          prefixIcon: Icons.alternate_email_rounded),
-    );
+  Widget _buildHorizontalOrLine() {
+    return Container(
+        margin: const EdgeInsets.only(top: 100.0),
+        child: const HorizontalOrLine());
   }
 
-  Widget _sizedBox() {
-    return const SizedBox(
-      height: 15,
-    );
-  }
-
-  Widget _textCrearCuenta() {
-    return const Text(
-      'Crear una nueva cuenta ',
-      style: AppTheme.textCreateUser,
+  Widget _buildTextCreateAccount() {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 15.0),
+      child: const Text(
+        'Crear una nueva cuenta ',
+        style: AppTheme.textCreateUser,
+      ),
     );
   }
 }
