@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class LoginFuntions {
 //------------------------------
 // Validate Email
@@ -19,6 +17,15 @@ class LoginFuntions {
   static String? validatorPassword(String? value) {
     return (value != null && value.length >= 6)
         ? null
-        : 'La contraseña debe ser mayor o igual a 6 caracteres';
+        : 'La contraseña debe ser mayor a 5 caracteres';
+  }
+
+  //------------------------------
+// Validate National Id
+//------------------------------
+  static String? validatorNationalId(String? value) {
+    return (value != null && value.length == 10)
+        ? null
+        : 'Formato de Cédula incorrecto';
   }
 }

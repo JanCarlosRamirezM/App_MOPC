@@ -4,8 +4,6 @@ import 'package:casos_app/ui/input_decorations.dart';
 import 'package:casos_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-String title = 'Iniciar sesión';
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -14,17 +12,15 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
-        child: Column(children: [
-          const SizedBox(
-            height: 15,
+        child: Column(children: const [
+          SizedBox(
+            height: 60,
           ),
-          LogoApp(
-            title: title,
+          LogoApp(widthCupulaBlue: 110, widthLogoMopc: 160),
+          SizedBox(
+            height: 40,
           ),
-          const SizedBox(
-            height: 50,
-          ),
-          const _LoginForm(),
+          _LoginForm(),
         ]),
       ),
     ));
@@ -41,7 +37,7 @@ class _LoginForm extends StatelessWidget {
         child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(children: [
-              _buildEmail(),
+              _buildNationalId(),
               _buildPassword(),
               _buildForgotPassword(),
               _buildButtonEnter(context),
@@ -50,15 +46,16 @@ class _LoginForm extends StatelessWidget {
             ])));
   }
 
-  Widget _buildEmail() {
+  Widget _buildNationalId() {
     return Container(
         margin: const EdgeInsets.only(bottom: 15.0),
         child: TextFormField(
+            keyboardType: TextInputType.number,
             decoration: InputDecorations.authInputDecoration(
-                hintText: 'Correo@correo.com ',
-                labelText: 'Correo electrónico',
-                prefixIcon: Icons.alternate_email_rounded),
-            validator: LoginFuntions.validatorEmail));
+                hintText: '01000000001',
+                labelText: 'Cédula',
+                prefixIcon: Icons.perm_identity),
+            validator: LoginFuntions.validatorNationalId));
   }
 
   Widget _buildPassword() {
@@ -66,7 +63,7 @@ class _LoginForm extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15.0),
       child: TextFormField(
           decoration: InputDecorations.authInputDecoration(
-              hintText: '*****',
+              hintText: '******',
               labelText: 'Contraseña',
               prefixIcon: Icons.lock_outline),
           validator: LoginFuntions.validatorPassword),
@@ -91,12 +88,12 @@ class _LoginForm extends StatelessWidget {
           minWidth: double.infinity,
           height: 50,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           disabledColor: Colors.grey,
           elevation: 0,
           color: AppTheme.primary,
           child: const Text(
-            'Ingresar',
+            'Iniciar Sesión',
             style: AppTheme.buttonTextLogin,
           ),
           onPressed: () {
@@ -114,9 +111,19 @@ class _LoginForm extends StatelessWidget {
   Widget _buildTextCreateAccount() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15.0),
-      child: const Text(
-        'Crear una nueva cuenta ',
-        style: AppTheme.textCreateUser,
+      child: Column(
+        children: const [
+          Text(
+            '¿No tienes una cuenta?',
+            style: AppTheme.textCreateUser,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            'Crear una',
+            style: AppTheme.textCreateUser2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

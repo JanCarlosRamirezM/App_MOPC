@@ -1,10 +1,12 @@
-import 'package:casos_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class LogoApp extends StatelessWidget {
-  final String title;
+  final double widthCupulaBlue;
+  final double widthLogoMopc;
 
-  const LogoApp({Key? key, required this.title}) : super(key: key);
+  const LogoApp(
+      {Key? key, required this.widthCupulaBlue, required this.widthLogoMopc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +14,13 @@ class LogoApp extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5),
       child: Column(
         children: [
-          Image.asset('assets/cupulaBlue.png', width: 80),
+          Image.asset('assets/cupulaBlue.png', width: widthCupulaBlue),
           const SizedBox(
             height: 5,
           ),
-          Image.asset('assets/logomopc.png', width: 100),
+          Image.asset('assets/logomopc.png', width: widthLogoMopc),
           const SizedBox(
             height: 5,
-          ),
-          Text(
-            title,
-            style: AppTheme.loginTitle,
           ),
         ],
       ),
